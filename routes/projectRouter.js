@@ -2,15 +2,36 @@ const express = require('express')
 const Project = require('../models/project.js')
 const router = express.Router()
 
+// for predictive
+const { PythonShell } = require('python-shell')
+
+
 router.get('/', async (req, res) => {
     var project = await Project.find()
     console.log("projectRouter logs")
-    console.log(req.query)
     console.log(req.session)
     if (req.query.new == 'true') res.render('addproject', { projects: project })
     else if (req.query.new == 'false') res.redirect('/dashboard')
     else {
         var currProject = await Project.findOne({title: req.query.title})
+        
+        var predicted
+        // Get data inputs from the request body
+        let { x } = { x: 10 }
+        console.log(x)
+        // Load the saved linear regression model
+        const options = {
+                pythonOptions: ['-u'],
+                scriptPath: 'public/assets/python',
+                args: [x]
+            }
+        PythonShell.run('fyp_pred_2_0.py', options, (err, result) => {
+            if (err) throw err
+            // Send the prediction results back to the frontend
+            // res.send({ prediction: result })
+            predicted = result
+        })
+        console.log(predicted)
         res.render('project', { projects: project, currProject })
     }
 })

@@ -1,17 +1,24 @@
 const express = require('express')
+
+// for mongodb
 const mongoose = require('mongoose')
-require('dotenv/config')
 
-const app = express()
-
-// database connection
-mongoose.connect(process.env.MONGO_URI)
- 
 // for sessions
 const cookieParser = require('cookie-parser')
 const sessions = require('express-session')
 const MongoStore = require('connect-mongodb-session')(sessions)
 
+require('dotenv/config') // for environment variables
+
+// for predictive analysis
+const { PythonShell } = require('python-shell')
+
+const app = express()
+
+// database connection
+mongoose.connect(process.env.MONGO_URI)
+
+// sessions
 app.use(sessions({
     secret: "hehe",
     saveUninitialized: true,

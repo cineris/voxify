@@ -17,8 +17,9 @@ router.post('/',async (req, res) => {
     try {
         await user.save()
         session = req.session
-        session.userid = user.username
-        session.category = user.category
+        session.userid = req.body.username
+        session.category = req.query.category
+        console.log(user.category)
         console.log(req.session)
         res.redirect(`/dashboard?category=${session.category}`)
     }
