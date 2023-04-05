@@ -15,6 +15,7 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
+import sys
 
 # Set the path to the directory containing the CSV files
 dir_path = '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/DataSets/'
@@ -116,15 +117,15 @@ for test_file in test_files:
   
   # Do something with the predictions here
   # For example, you can print the predicted values
-  print(y_pred)
+  # print(y_pred)
 
 #Validating
 
 mse = mean_squared_error(y_test, y_pred)
-print('Mean squared error: ', mse)
+# print('Mean squared error: ', mse)
 
 r2 = model.score(X_test, y_test)
-print("R-squared value:", r2)
+# print("R-squared value:", r2)
 
 # Set the path to the directory containing the CSV files
 data_dir = '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets'
@@ -155,7 +156,7 @@ new_data_with_predictions = pd.concat([new_data, pd.DataFrame(Predicted_Day, col
 new_data_with_predictions.insert(0, 'Day', new_data_with_predictions.pop('Day'))
 
 # Print the new DataFrame
-print(new_data_with_predictions)
+# print(new_data_with_predictions)
 
 # Set the output directory for the predictions CSV file
 output_dir = '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets/pred_output'

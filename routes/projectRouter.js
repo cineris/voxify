@@ -18,20 +18,18 @@ router.get('/', async (req, res) => {
         var predicted
         // Get data inputs from the request body
         let { x } = { x: 10 }
-        console.log(x)
         // Load the saved linear regression model
         const options = {
                 pythonOptions: ['-u'],
                 scriptPath: 'public/assets/python',
                 args: [x]
             }
-        PythonShell.run('fyp_pred_2_0.py', options, (err, result) => {
+        PythonShell.run('test.py', options, (err, result) => {
             if (err) throw err
             // Send the prediction results back to the frontend
             // res.send({ prediction: result })
-            predicted = result
+            if (result) console.log(result)
         })
-        console.log(predicted)
         res.render('project', { projects: project, currProject })
     }
 })
