@@ -138,14 +138,34 @@
                   new Chart(document.querySelector('#lineChart'), {
                     type: 'line',
                     data: {
-                      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                      datasets: [{
-                        label: 'Line Chart',
-                        data: [65, 59, 80, 81, 56, 55, 40],
-                        fill: false,
-                        borderColor: 'rgb(75, 192, 192)',
-                        tension: 0.1
-                      }]
+                      labels: '<%= pred.days %>'.split(","),
+                      datasets: [
+                        {
+                          label: 'APPROVED',
+                          data: '<%= pred.APPROVED %>'.split(","),
+                          fill: true,
+                          borderColor: 'rgb(255,215,0)',
+                          borderColor: 'rgb(152,251,152)',
+                          backgroundColor: 'rgba(34,139,34,1)',
+                          tension: 0.1
+                        },
+                        {
+                          label: 'WIP',
+                          data: '<%= pred.WIP %>'.split(","),
+                          fill: '-1',
+                          borderColor: 'rgb(255,255,0)',
+                          backgroundColor: 'rgba(255,215,0,1)',
+                          tension: 0.1
+                        },
+                        {
+                          label: 'YTS',
+                          data: '<%= pred.YTS %>'.split(","),
+                          fill: '-2',
+                          borderColor: 'rgb(75, 192, 192)',
+                          backgroundColor: 'rgba(75, 192, 192,0.5)',
+                          tension: 0.1
+                        }
+                      ]
                     },
                     options: {
                       scales: {

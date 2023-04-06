@@ -18,10 +18,10 @@ from sklearn.metrics import mean_squared_error
 import sys
 
 # Set the path to the directory containing the CSV files
-dir_path = '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/DataSets/'
+dir_path = 'main/DataSets/'
 
 # Set the output directory for the scaled CSV files
-output_dir = '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_Datasets'
+output_dir = 'main/output/Normal_Datasets'
 
 # Create the output directory if it doesn't already exist
 if not os.path.exists(output_dir):
@@ -54,7 +54,7 @@ for filename in os.listdir(dir_path):
 
 #Dividing datasets for training and testing
 # Path to the directory containing your datasets
-data_dir = '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets'
+data_dir = 'main/output/Normal_DataSets'
 
 # Create subdirectories for the train and test files
 train_dir = os.path.join(data_dir, 'train_files')
@@ -89,7 +89,7 @@ for filename in os.listdir(data_dir):
 
 #Model Build, Fit and Predict
 # Define the path of the folder containing the CSV files
-folder_path = '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets/train_files/'
+folder_path = 'main/output/Normal_DataSets/train_files/'
 
 # Load all CSV files in the folder and concatenate them into one DataFrame
 dfs = []
@@ -106,7 +106,7 @@ y_train = train_data['Day']
 model = LinearRegression().fit(X_train, y_train)
 
 # Load all test datasets into a list
-test_files = ['/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets/test_files/DataSet1_test.csv', '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets/test_files/DataSet2_test.csv', '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets/test_files/DataSet3_test.csv', '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets/test_files/DataSet4_test.csv', '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets/test_files/DataSet5_test.csv', '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets/test_files/DataSet6_test.csv', '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets/test_files/DataSet7_test.csv', '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets/test_files/DataSet8_test.csv', '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets/test_files/DataSet9_test.csv', '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets/test_files/DataSet10_test.csv', '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets/test_files/DataSet11_test.csv']
+test_files = ['main/output/Normal_DataSets/test_files/DataSet1_test.csv', 'main/output/Normal_DataSets/test_files/DataSet2_test.csv', 'main/output/Normal_DataSets/test_files/DataSet3_test.csv', 'main/output/Normal_DataSets/test_files/DataSet4_test.csv', 'main/output/Normal_DataSets/test_files/DataSet5_test.csv', 'main/output/Normal_DataSets/test_files/DataSet6_test.csv', 'main/output/Normal_DataSets/test_files/DataSet7_test.csv', 'main/output/Normal_DataSets/test_files/DataSet8_test.csv', 'main/output/Normal_DataSets/test_files/DataSet9_test.csv', 'main/output/Normal_DataSets/test_files/DataSet10_test.csv', 'main/output/Normal_DataSets/test_files/DataSet11_test.csv']
 
 # Loop through each test dataset, make predictions, and store the results
 for test_file in test_files:
@@ -127,23 +127,10 @@ mse = mean_squared_error(y_test, y_pred)
 r2 = model.score(X_test, y_test)
 # print("R-squared value:", r2)
 
-# Set the path to the directory containing the CSV files
-data_dir = '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets'
-
-# Set the path to the CSV file to be modified
-csv_file = 'DataSet12.csv'
-
-# Load the CSV file into a Pandas DataFrame
-csv_path = os.path.join(data_dir, csv_file)
-df = pd.read_csv(csv_path)
-
-# Write the modified DataFrame back to the CSV file
-df.to_csv(csv_path, index=False)
-
 #Predicting with New Dataset
 
 # Load and preprocess the new data
-new_data = pd.read_csv('/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets/DataSet12.csv')
+new_data = pd.read_csv('main/output/Normal_DataSets/DataSet12.csv')
 # Apply the same preprocessing steps you used on your training and test sets
 
 # Make predictions on the new data
@@ -159,7 +146,7 @@ new_data_with_predictions.insert(0, 'Day', new_data_with_predictions.pop('Day'))
 # print(new_data_with_predictions)
 
 # Set the output directory for the predictions CSV file
-output_dir = '/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/Normal_DataSets/pred_output'
+output_dir = 'main/output/Normal_DataSets/pred_output'
 
 # Create the predictions directory if it doesn't already exist
 if not os.path.exists(output_dir):
@@ -172,11 +159,11 @@ new_data_with_predictions.to_csv(output_filepath, index=False)
 from pickle import dump
 
 # save the model
-dump(model, open('/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/load_files/model.pkl', 'wb'))
+dump(model, open('main/output/load_files/model.pkl', 'wb'))
 # save the scaler X
-dump(scaler_X, open('/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/load_files/scalerX.pkl', 'wb'))
+dump(scaler_X, open('main/output/load_files/scaler_X.pkl', 'wb'))
 # save the scaler
-dump(scaler_Y, open('/Users/phrophecyreaper/Desktop/MPSTME/SEMESTER 8/FYP/main/output/load_files/scaler_Y.pkl', 'wb'))
+dump(scaler_Y, open('main/output/load_files/scaler_Y.pkl', 'wb'))
 
 #Reverting Predictions to Original
 # Split the DataFrame into two parts based on the columns that need to be transformed differently
@@ -190,7 +177,7 @@ Ydata = pd.DataFrame(scaler_Y.inverse_transform(Ydata), columns=Y)
 Xdata = pd.DataFrame(scaler_X.inverse_transform(Xdata), columns=X)
 
 # Combine the two parts back into a single DataFrame
-original_with_predictions = pd.concat([Ydata, Xdata, pd.DataFrame(Predicted_Day, columns=['Predicted Day'])], axis=1)
+original_with_predictions = pd.concat([Ydata, Xdata], axis=1)
 
 # Print the new DataFrame
 print(original_with_predictions)
