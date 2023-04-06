@@ -4,11 +4,9 @@ let x = 10
 
 const options = {
     scriptPath: 'public/assets/python',
+    pythonOptions: ['-u'],
     args: [x]
 }
-PythonShell.run('test.py', options, (err, result) => {
-if (err) throw err
-// Send the prediction results back to the frontend
-// res.send({ prediction: result })
-if (result) console.log(result)
+PythonShell.run('test.py', options).then( (messages) => {
+    console.log(messages)
 })
